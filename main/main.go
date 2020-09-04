@@ -1,6 +1,9 @@
 package main
 
-import "PainTheMaster/columnreaction/column"
+import (
+	"PainTheMaster/columnreaction/column"
+	"fmt"
+)
 
 func main() {
 	var a, b column.AnalyteInCol
@@ -20,7 +23,7 @@ func main() {
 		timeFrac,         //s float64
 	)
 
-	b.Init(0.2, //M iniConc float64
+	b.Init(0.00, //M iniConc float64
 		10.0/100.0,       //m colLen float64,
 		1000,             //division int,
 		10.0e-2/(1.0*60), // m/s flowRate float64
@@ -42,4 +45,9 @@ func main() {
 	a.Output("a.csv")
 	b.Output("b.csv")
 
+	m := column.Merge(a, b)
+
+	m.Output("m.csv")
+
+	fmt.Println("Done.")
 }
